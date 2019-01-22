@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>my first export PDF</title>
+    <script src="../js/pdfmake/pdfmake.min.js"></script>
+    <script src="../js/pdfmake/vfs_fonts.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script>
+        //设置字体
+        pdfMake.fonts = {
+            Roboto: {
+                normal: 'Roboto-Regular.ttf',
+                bold: 'Roboto-Medium.ttf',
+                italics: 'Roboto-Italic.ttf',
+                bolditalics: 'Roboto-Italic.ttf'
+            },
+            /*这里是加入的微软雅黑字体*/
+            msyh: {
+                normal: 'msyh.ttf',
+                bold: 'msyh.ttf',
+                italics: 'msyh.ttf',
+                bolditalics: 'msyh.ttf',
+            }
+        };
+
+
+        var FONT_SIZE_TEXT = 9;
+        var bord0 = false;
+        var bord1 = false;
+
+        function receiptDev() {
+
+            var kk = new Array();
+            var t = {
+                columns: [
+                    {
+                        margin: [0, 0, 0, 0],
+                        table: {
+                            widths: [145, 110, 40, 55, 90],
+                            heights: [20, 15, 15, 110],
+                            body: [
+                                [{
+                                    text: '贵州省政府非税收入通用收据（机制）',
+                                    fontSize: FONT_SIZE_TEXT + 8,
+                                    alignment: 'center',
+                                    colSpan: 5,
+                                    margin: [0, 0, 0, 10],
+                                    border: [false, false, false, false]
+                                }, {}, {}, {}, {}],
+                                [{
+                                    columns: [
+                                        {
+                                            margin: [-5, -2, 0, -2],
+                                            table: {
+                                                widths: [30, 160, 48, 100, 100],
+                                                // heights: [20, 15, 15, 100],
+                                                body: [[
+                                                    {text: '付款人', fontSize: FONT_SIZE_TEXT, margin: [0, 0, 0, 0], border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '张三', fontSize: FONT_SIZE_TEXT, margin: [0, 0, 0, 0], border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '开票日期:', fontSize: FONT_SIZE_TEXT, margin: [0, 0, 0, 0], border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '2019-1-21', fontSize: FONT_SIZE_TEXT, margin: [0, 0, 0, 0], border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: 'NO 123456789', fontSize: FONT_SIZE_TEXT, margin: [0, 0, 0, 0], border: [bord1, bord1, bord1, bord1]}
+                                                ]]
+                                            }
+                                        }],
+                                    colSpan: 5,
+                                    border: [false, false, false, false]
+                                }
+                                ],
+                                 [{text: '收入项目', fontSize: FONT_SIZE_TEXT, alignment: 'center'}
+                                    , {text: '项目编码', fontSize: FONT_SIZE_TEXT, alignment: 'center'}
+                                    , {text: '数量', fontSize: FONT_SIZE_TEXT, alignment: 'center'}
+                                    , {text: '征收标准', fontSize: FONT_SIZE_TEXT, alignment: 'center'}
+                                    , {text: '金额', fontSize: FONT_SIZE_TEXT, alignment: 'center'}
+                                ], [{
+                                    columns: [
+                                        {
+                                            margin: [-5, 0, 0, 0],
+                                            table: {
+                                                widths: [145, 110, 40, 55, 90],
+                                                // heights: [20, 15, 15, 100],
+                                                body: [[{text: '书费', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '001', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '1', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '100', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '100', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                ],
+                                                    [{text: '书费', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                        , {text: '001', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                        , {text: '1', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                        , {text: '100', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                        , {text: '100', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    ]]
+                                            }
+                                        }],
+                                    colSpan: 5,
+                                    border: [true, true, true, true]
+                                }], [{
+                                    columns: [
+                                        {
+                                            margin: [-5, -2, 0, -2],
+                                            table: {
+                                                widths: [60, 300, 100],
+                                                heights: [10],
+                                                body: [[{text: '合计金额', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '001', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '100', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                ]]
+                                            }
+                                        }],
+                                    colSpan: 5,
+                                    border: [true, true, true, true]
+                                }
+                                ], [{ columns: [
+                                        {
+                                            margin: [-5, -2, 0, -2],
+                                            table: {
+                                                widths: [60, 400],
+                                                heights: [5],
+                                                body: [[{text: '备注', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, true, true, bord1]}
+                                                    , {text: '001', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, true, true, bord1]}
+                                                ]]
+                                            }
+                                        }],
+                                    colSpan: 5,
+                                    border: [true, true, true, true]}
+
+                                ], [{columns: [
+                                        {
+                                            margin: [0, 0, 0, 0],
+                                            table: {
+                                                widths: [150, 40, 80, 100],
+                                                body: [[{text: '执收单位（财务专用章）', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '开票人:', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                ]]
+                                            }
+                                        }],
+                                    colSpan: 5,
+                                    border: [bord0, bord0, bord0, bord0]}
+                                ]]
+                        }
+                    }
+                ]
+            };
+
+            kk.push(t);
+
+            var dd = {
+                // pageSize: 'A4',
+                pageMargins: [55, 20, 20, 0],
+                pageSize: { width: 600, height: 285 },
+                content: kk,
+                defaultStyle: {
+                    font: 'msyh'
+                }
+            };
+            return dd;
+        }
+        function receipt() {
+            var kk = new Array();
+            var t = {
+                columns: [
+                    {
+                        margin: [0, 0, 0, 0],
+                        table: {
+                            widths: [145, 110, 40, 55, 90],
+                            heights: [20, 15, 15, 110],
+                            body: [
+                                [{
+                                    text: ' ',
+                                    fontSize: FONT_SIZE_TEXT + 8,
+                                    alignment: 'center',
+                                    colSpan: 5,
+                                    margin: [0, 0, 0, 10],
+                                    border: [bord0, bord0, bord0, bord0]
+                                }, {}, {}, {}, {}],
+                                [{
+                                    columns: [
+                                        {
+                                            margin: [-5, -2, 0, -4],
+                                            table: {
+                                                widths: [30, 160, 48, 100, 100],
+                                                heights: [5],
+                                                body: [[
+                                                    {text: '', fontSize: FONT_SIZE_TEXT, margin: [0, 0, 0, 0], border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '张三', fontSize: FONT_SIZE_TEXT, margin: [0, 0, 0, 0], border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '', fontSize: FONT_SIZE_TEXT, margin: [0, 0, 0, -5], border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '2019-1-21', fontSize: FONT_SIZE_TEXT, margin: [0, 0, 0, 0], border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: 'NO 123456789', fontSize: FONT_SIZE_TEXT, margin: [0, 0, 0, 0], border: [bord1, bord1, bord1, bord1]}
+                                                ]]
+                                            }
+                                        }],
+                                    colSpan: 5,
+                                    border: [bord0, bord0, bord0, bord0]
+                                }
+                                ],
+                                 [{text: '', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                    , {text: '', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                    , {text: '', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                    , {text: '', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                    , {text: '', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                ], [{
+                                    columns: [
+                                        {
+                                            margin: [-5, 0, 0, 0],
+                                            table: {
+                                                widths: [145, 110, 40, 55, 90],
+                                                // heights: [20, 15, 15, 100],
+                                                body: [[{text: '书费', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '001', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '1', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '100', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '100', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                ],
+                                                    [{text: '住宿费', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                        , {text: '001', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                        , {text: '1', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                        , {text: '100', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                        , {text: '100', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    ]]
+                                            }
+                                        }],
+                                    colSpan: 5,
+                                    border: [bord0, bord0, bord0, bord0]
+                                }], [{
+                                    columns: [
+                                        {
+                                            margin: [-5, -2, 0, -2],
+                                            table: {
+                                                widths: [60, 300, 100],
+                                                heights: [10],
+                                                body: [[{text: '', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '壹佰元整', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '100', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                ]]
+                                            }
+                                        }],
+                                    colSpan: 5,
+                                    border: [bord0, bord0, bord0, bord0]
+                                }
+                                ], [{ columns: [
+                                        {
+                                            margin: [-5, -2, 0, -2],
+                                            table: {
+                                                widths: [60, 400],
+                                                heights: [5],
+                                                body: [[{text: '', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '微信支付', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                ]]
+                                            }
+                                        }],
+                                    colSpan: 5,
+                                    border: [bord0, bord0, bord0, bord0]}
+
+                                ], [{columns: [
+                                        {
+                                            margin: [0, 0, 0, 0],
+                                            table: {
+                                                widths: [150, 40, 80, 100],
+                                                body: [[{text: '', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '', fontSize: FONT_SIZE_TEXT, alignment: 'center', border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '王二', fontSize: FONT_SIZE_TEXT, border: [bord1, bord1, bord1, bord1]}
+                                                    , {text: '麻子', fontSize: FONT_SIZE_TEXT, border: [bord1, bord1, bord1, bord1]}
+                                                ]]
+                                            }
+                                        }],
+                                    colSpan: 5,
+                                    border: [bord0, bord0, bord0, bord0]}
+                                ]]
+                        }
+                    }
+                ]
+            };
+
+            kk.push(t);
+
+            var dd = {
+                // pageSize: 'A4',
+                pageMargins: [55, 20, 20, 0],
+                pageSize: { width: 600, height: 285 },
+                content: kk,
+                defaultStyle: {
+                    font: 'msyh'
+                }
+            };
+            return dd;
+        }
+        function receipt1() {
+            var kk = new Array();
+
+            for (var i = 0; i < 10; i++) {
+                if (kk.length != 0) {
+                    kk.push({text: '', pageBreak: 'before'});
+                }
+                var k = [
+                    {text: '2019-1-21', fontSize: FONT_SIZE_TEXT + 2, margin: [180, 55, 0, 0]}
+                    , {text: '张三', fontSize: FONT_SIZE_TEXT + 2, margin: [70, 20, 0, 0]}
+                    , {text: '书费', fontSize: FONT_SIZE_TEXT + 2, margin: [70, 10, 0, 0]}
+                    , {text: '人民币', fontSize: FONT_SIZE_TEXT + 2, margin: [380, -12, 0, 0]}
+                    , {text: '壹佰万元整', fontSize: FONT_SIZE_TEXT + 2, margin: [70, 10, 0, 0]}
+                    , {text: '1000000.00', fontSize: FONT_SIZE_TEXT + 2, margin: [380, -12, 0, 0]}
+                    , {text: '李四', fontSize: FONT_SIZE_TEXT + 2, margin: [410, 120, 0, 0]}
+                ];
+                kk.push(k);
+            }
+
+            var dd = {
+                // pageSize: 'A4',
+                pageMargins: [55, 20, 20, 0],
+                pageSize: { width: 600, height: 340 },
+                content: kk,
+                defaultStyle: {
+                    font: 'msyh'
+                }
+            };
+            return dd;
+        }
+
+        function popen() {
+            var dd = receipt();
+            pdfMake.createPdf(dd).open();
+        } function popen1() {
+            var dd = receipt1();
+            pdfMake.createPdf(dd).open();
+        }
+
+    </script>
+</head>
+<body>
+<button onclick="popen()">预览（打印版）</button>
+<button onclick="popen1()">预览（手写板）</button>
+</body>
+</html>
